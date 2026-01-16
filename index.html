@@ -1,0 +1,1567 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小宝贝3岁生日纪念</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- GSAP 动画库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- AOS 滚动动画库 -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF9EAA',
+                        secondary: '#9ED5FF',
+                        accent: '#FFDE7D',
+                        light: '#FFF5F5',
+                        dark: '#5D5FEF'
+                    },
+                    fontFamily: {
+                        sans: ['Arial Rounded MT Bold', 'Varela Round', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            }
+            .text-shadow-lg {
+                text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+            }
+            .btn-primary {
+                @apply bg-primary text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105;
+            }
+            .btn-secondary {
+                @apply bg-secondary text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105;
+            }
+            .section-padding {
+                @apply py-16 md:py-24;
+            }
+        }
+        
+        /* 自定义样式 */
+        body {
+            background-color: #FFF5F5;
+            font-family: 'Arial Rounded MT Bold', 'Varela Round', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .cloud {
+            position: absolute;
+            opacity: 0.8;
+            z-index: -1;
+        }
+        
+        .cloud-1 {
+            top: 10%;
+            left: 5%;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .cloud-2 {
+            top: 15%;
+            right: 10%;
+            animation: float 18s ease-in-out infinite reverse;
+        }
+        
+        .cloud-3 {
+            bottom: 20%;
+            left: 15%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .balloon {
+            position: absolute;
+            z-index: -1;
+        }
+        
+        .balloon-1 {
+            top: 20%;
+            right: 20%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .balloon-2 {
+            bottom: 30%;
+            left: 10%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        
+        .balloon-3 {
+            top: 40%;
+            left: 30%;
+            animation: float 12s ease-in-out infinite;
+        }
+        
+        .timeline-container {
+            position: relative;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #FF9EAA;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 10px 40px;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid #FFDE7D;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-left {
+            left: 0;
+        }
+        
+        .timeline-right {
+            left: 50%;
+        }
+        
+        .timeline-left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #FF9EAA;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #FF9EAA;
+        }
+        
+        .timeline-right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #9ED5FF;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #9ED5FF transparent transparent;
+        }
+        
+        .timeline-right::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-filter-btn.active {
+            background-color: #FF9EAA;
+            color: white;
+        }
+        
+        .storybook-page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .storybook-page.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .wish-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* 响应式时间轴 */
+        @media screen and (max-width: 768px) {
+            .timeline-container::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid #FF9EAA;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent #FF9EAA transparent transparent;
+            }
+            
+            .timeline-left::after, .timeline-right::after {
+                left: 18px;
+            }
+            
+            .timeline-right {
+                left: 0%;
+            }
+        }
+        
+        /* 礼物盒动画 */
+        .gift-box {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .gift-box:hover .gift-lid {
+            transform: translateY(-15px);
+        }
+        
+        .gift-lid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 25%;
+            background-color: #FF9EAA;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+        
+        .gift-box:hover .gift-ribbon {
+            height: 115%;
+        }
+        
+        .gift-ribbon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20%;
+            height: 100%;
+            background-color: #FFDE7D;
+            transition: height 0.3s ease;
+            z-index: 2;
+        }
+        
+        .gift-ribbon::before {
+            content: '';
+            position: absolute;
+            top: 25%;
+            left: -40%;
+            width: 80%;
+            height: 20%;
+            background-color: #FFDE7D;
+            border-radius: 5px;
+        }
+        
+        /* 旋转木马效果 */
+        .carousel {
+            perspective: 1000px;
+            height: 300px;
+            position: relative;
+        }
+        
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+        }
+        
+        .carousel-item {
+            position: absolute;
+            width: 200px;
+            height: 250px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.5s ease;
+        }
+        
+        /* 音乐播放器样式 */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .music-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #FF9EAA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .music-toggle:hover {
+            transform: scale(1.1);
+            background-color: #FF7D91;
+        }
+        
+        .music-progress {
+            width: 150px;
+            height: 4px;
+            background-color: #E0E0E0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .music-progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #FF9EAA;
+            transition: width 0.1s linear;
+        }
+        
+        /* 星星背景 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 星星背景 -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- 导航栏 -->
+    <nav class="bg-white bg-opacity-90 backdrop-blur-md fixed w-full z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/bcdd6cd6d8dc4655b40fad5c3b597b44~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544250&amp;x-signature=PZHcaMxsuvUzzTiAFy6WRaUY36s%3D" alt="Logo" class="w-10 h-10 rounded-full">
+                    <span class="text-2xl font-bold text-primary">小宝贝3岁生日</span>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-primary font-bold transition-colors">首页</a>
+                    <a href="#timeline" class="text-gray-700 hover:text-primary font-bold transition-colors">成长时间轴</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-primary font-bold transition-colors">照片画廊</a>
+                    <a href="#wishes" class="text-gray-700 hover:text-primary font-bold transition-colors">祝福墙</a>
+                    <a href="#storybook" class="text-gray-700 hover:text-primary font-bold transition-colors">互动故事书</a>
+                </div>
+                
+                <!-- 移动端汉堡菜单 -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                        <i class="fa fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 移动端导航菜单 -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-primary font-bold">首页</a>
+                <a href="#timeline" class="block py-2 text-gray-700 hover:text-primary font-bold">成长时间轴</a>
+                <a href="#gallery" class="block py-2 text-gray-700 hover:text-primary font-bold">照片画廊</a>
+                <a href="#wishes" class="block py-2 text-gray-700 hover:text-primary font-bold">祝福墙</a>
+                <a href="#storybook" class="block py-2 text-gray-700 hover:text-primary font-bold">互动故事书</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 首页部分 -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+        <!-- 装饰元素 -->
+        <div class="cloud cloud-1 text-8xl text-secondary opacity-20">
+            <i class="fa fa-cloud"></i>
+        </div>
+        <div class="cloud cloud-2 text-6xl text-primary opacity-20">
+            <i class="fa fa-cloud"></i>
+        </div>
+        <div class="cloud cloud-3 text-7xl text-accent opacity-20">
+            <i class="fa fa-cloud"></i>
+        </div>
+        
+        <div class="balloon balloon-1 text-4xl text-primary">
+            <i class="fa fa-circle text-primary"></i>
+            <div class="h-16 w-1 bg-primary mx-auto"></div>
+        </div>
+        <div class="balloon balloon-2 text-3xl text-secondary">
+            <i class="fa fa-circle text-secondary"></i>
+            <div class="h-16 w-1 bg-secondary mx-auto"></div>
+        </div>
+        <div class="balloon balloon-3 text-5xl text-accent">
+            <i class="fa fa-circle text-accent"></i>
+            <div class="h-16 w-1 bg-accent mx-auto"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 py-16 text-center" data-aos="fade-up">
+            <div class="max-w-4xl mx-auto">
+                <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/ca5863e3e46b42e8aad940b78513cd61~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544249&amp;x-signature=jx1f8d2zVQjhq2aIW8UlROYej4M%3D" alt="生日庆祝" class="w-64 h-64 object-contain mx-auto mb-8 animate-float">
+                
+                <h1 class="text-5xl md:text-7xl font-bold text-primary mb-4 text-shadow-lg">
+                    小宝贝 <span class="text-secondary">3岁</span> 生日快乐！
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-700 mb-8">
+                    从呱呱坠地到蹒跚学步，从牙牙学语到活泼可爱，
+                    三年的时光，见证了你的每一步成长。
+                    今天，我们一起庆祝这个特别的日子！
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#timeline" class="btn-primary">
+                        <i class="fa fa-clock-o mr-2"></i> 查看成长历程
+                    </a>
+                    <a href="#gallery" class="btn-secondary">
+                        <i class="fa fa-camera mr-2"></i> 浏览照片画廊
+                    </a>
+                </div>
+                
+                <div class="mt-16 flex justify-center">
+                    <a href="#timeline" class="text-primary animate-bounce-slow">
+                        <i class="fa fa-angle-down text-4xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 成长时间轴部分 -->
+    <section id="timeline" class="section-padding bg-white relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-primary mb-4">成长时间轴</h2>
+                <p class="text-xl text-gray-600">记录宝贝从出生到3岁的每一个重要时刻</p>
+            </div>
+            
+            <div class="timeline-container">
+                <!-- 出生 -->
+                <div class="timeline-item timeline-left" data-aos="fade-right">
+                    <div class="timeline-content bg-primary bg-opacity-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold">
+                                0
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-primary">出生</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            2023年7月15日，一个小生命降临到这个世界。
+                            你带着哭声来到我们身边，那一刻，我们的世界变得更加完整。
+                        </p>
+                        <div class="bg-white rounded-lg p-4 shadow-inner">
+                            <p class="italic text-gray-600">
+                                "欢迎来到这个美好的世界，亲爱的宝贝！我们爱你！"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3个月 -->
+                <div class="timeline-item timeline-right" data-aos="fade-left">
+                    <div class="timeline-content bg-secondary bg-opacity-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-secondary flex items-center justify-center text-white text-2xl font-bold">
+                                3
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-secondary">3个月</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            宝贝学会了抬头，能够稳稳地支撑起自己的小脑袋。
+                            你的第一次微笑，如阳光般温暖了我们的心房。
+                        </p>
+                        <div class="bg-white rounded-lg p-4 shadow-inner">
+                            <p class="italic text-gray-600">
+                                "每一个小小的进步，都让我们欣喜若狂！"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 6个月 -->
+                <div class="timeline-item timeline-left" data-aos="fade-right">
+                    <div class="timeline-content bg-primary bg-opacity-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold">
+                                6
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-primary">6个月</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            可以独坐了！你能够自己坐在那里玩耍，
+                            好奇地探索周围的世界，小手指灵活地抓取各种物品。
+                        </p>
+                        <div class="bg-white rounded-lg p-4 shadow-inner">
+                            <p class="italic text-gray-600">
+                                "你的好奇心让我们重新认识这个世界的美好！"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1岁 -->
+                <div class="timeline-item timeline-right" data-aos="fade-left">
+                    <div class="timeline-content bg-secondary bg-opacity-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-secondary flex items-center justify-center text-white text-2xl font-bold">
+                                1
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-secondary">1岁</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            第一个生日！你学会了站立，甚至开始尝试迈出人生的第一步。
+                            虽然摇摇晃晃，但每一步都充满了勇气。
+                        </p>
+                        <div class="bg-white rounded-lg p-4 shadow-inner">
+                            <p class="italic text-gray-600">
+                                "一岁一礼，一寸欢喜。愿你永远保持这份勇气！"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2岁 -->
+                <div class="timeline-item timeline-left" data-aos="fade-right">
+                    <div class="timeline-content bg-primary bg-opacity-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold">
+                                2
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-primary">2岁</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            语言能力突飞猛进，会说很多词语和简单的句子。
+                            活泼好动，喜欢跑跳，对一切都充满了好奇。
+                        </p>
+                        <div class="bg-white rounded-lg p-4 shadow-inner">
+                            <p class="italic text-gray-600">
+                                "你的每一句话，都是最动听的声音！"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3岁 -->
+                <div class="timeline-item timeline-right" data-aos="fade-left">
+                    <div class="timeline-content bg-secondary bg-opacity-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-secondary flex items-center justify-center text-white text-2xl font-bold">
+                                3
+                            </div>
+                            <h3 class="text-2xl font-bold ml-4 text-secondary">3岁</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            今天，你三岁了！已经是个小大人了，
+                            有自己的想法和喜好，会表达自己的情感。
+                            你带给我们无尽的欢乐和爱。
+                        </p>
+                        <div class="bg-white rounded-lg p-4 shadow-inner">
+                            <p class="italic text-gray-600">
+                                "三岁生日快乐！愿你的未来充满无限可能！"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 照片画廊部分 -->
+    <section id="gallery" class="section-padding bg-light relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-primary mb-4">照片画廊</h2>
+                <p class="text-xl text-gray-600">记录宝贝成长的美好瞬间</p>
+            </div>
+            
+            <!-- 照片分类筛选 -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+                <button class="gallery-filter-btn active px-6 py-2 rounded-full bg-white shadow-md font-bold transition-all" data-filter="all">
+                    全部照片
+                </button>
+                <button class="gallery-filter-btn px-6 py-2 rounded-full bg-white shadow-md font-bold transition-all" data-filter="baby">
+                    婴儿时期
+                </button>
+                <button class="gallery-filter-btn px-6 py-2 rounded-full bg-white shadow-md font-bold transition-all" data-filter="toddler">
+                    幼儿时期
+                </button>
+                <button class="gallery-filter-btn px-6 py-2 rounded-full bg-white shadow-md font-bold transition-all" data-filter="birthday">
+                    生日庆祝
+                </button>
+                <button class="gallery-filter-btn px-6 py-2 rounded-full bg-white shadow-md font-bold transition-all" data-filter="family">
+                    家庭合影
+                </button>
+            </div>
+            
+            <!-- 照片网格 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 照片1 -->
+                <div class="gallery-item baby" data-aos="fade-up">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/b36f36df70374fbeb2450cdd9373d6f1~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544257&amp;x-signature=SwG9mmmkYitoCNSdgUB0pbuHapE%3D" alt="出生" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary mb-2">出生时刻</h3>
+                            <p class="text-gray-600">2023年7月15日，你来到这个世界的第一天</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 照片2 -->
+                <div class="gallery-item baby" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/81d503dbb2f54401aef15fa5cdbbeb7c~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544250&amp;x-signature=G0tOgZupxSKL90k35qdun%2FSW4ck%3D" alt="婴儿时期" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary mb-2">婴儿时期</h3>
+                            <p class="text-gray-600">1-6个月，每天都有新变化</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 照片3 -->
+                <div class="gallery-item toddler" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/b36f36df70374fbeb2450cdd9373d6f1~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544257&amp;x-signature=SwG9mmmkYitoCNSdgUB0pbuHapE%3D" alt="幼儿时期" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary mb-2">幼儿时期</h3>
+                            <p class="text-gray-600">1-2岁，学会走路和说话的美好时光</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 照片4 -->
+                <div class="gallery-item birthday" data-aos="fade-up">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/bcdd6cd6d8dc4655b40fad5c3b597b44~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544250&amp;x-signature=PZHcaMxsuvUzzTiAFy6WRaUY36s%3D" alt="生日庆祝" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary mb-2">生日庆祝</h3>
+                            <p class="text-gray-600">2岁生日，第一次真正的生日派对</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 照片5 -->
+                <div class="gallery-item family" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/d753c29309f545049134536fed90c7e2~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544250&amp;x-signature=HZcU9WU%2B4nNjE6OIB0LjUwLLxVw%3D" alt="家庭合影" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary mb-2">家庭合影</h3>
+                            <p class="text-gray-600">温馨的家庭时光，满满的爱</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 照片6 -->
+                <div class="gallery-item birthday" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/ca5863e3e46b42e8aad940b78513cd61~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544249&amp;x-signature=jx1f8d2zVQjhq2aIW8UlROYej4M%3D" alt="3岁生日" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-primary mb-2">3岁生日</h3>
+                            <p class="text-gray-600">今天，你三岁了！生日快乐，宝贝！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 照片查看器模态框 -->
+            <div id="image-viewer" class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center hidden">
+                <div class="relative max-w-4xl max-h-[90vh]">
+                    <button id="close-viewer" class="absolute -top-10 right-0 text-white text-3xl">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <img id="viewer-image" src="" alt="查看大图" class="max-w-full max-h-[90vh] rounded-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 生日祝福墙部分 -->
+    <section id="wishes" class="section-padding bg-white relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-primary mb-4">生日祝福墙</h2>
+                <p class="text-xl text-gray-600">来自家人和朋友们的美好祝福</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 祝福1 -->
+                <div class="wish-card bg-light rounded-xl p-6 shadow-lg" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                            妈妈
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold text-lg">妈妈</h3>
+                            <p class="text-sm text-gray-500">2026年7月15日</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        亲爱的宝贝，三岁生日快乐！看着你一天天长大，学习新技能，妈妈的心里充满了幸福和骄傲。
+                        愿你永远保持好奇心和纯真，健康快乐地成长！妈妈永远爱你！
+                    </p>
+                    <div class="mt-4 flex justify-end">
+                        <span class="text-primary text-xl">
+                            <i class="fa fa-heart"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- 祝福2 -->
+                <div class="wish-card bg-light rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white font-bold">
+                            爸爸
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold text-lg">爸爸</h3>
+                            <p class="text-sm text-gray-500">2026年7月15日</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        小宝贝，三岁了！爸爸为你感到骄傲。你是我们家的小太阳，带给我们无尽的欢乐。
+                        希望你健康成长，勇敢面对未来的一切挑战。爸爸永远是你坚强的后盾！
+                    </p>
+                    <div class="mt-4 flex justify-end">
+                        <span class="text-secondary text-xl">
+                            <i class="fa fa-star"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- 祝福3 -->
+                <div class="wish-card bg-light rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white font-bold">
+                            奶奶
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold text-lg">奶奶</h3>
+                            <p class="text-sm text-gray-500">2026年7月15日</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        我的小宝贝三岁了！时间过得真快，仿佛昨天你还是个小婴儿。
+                        奶奶看着你健康活泼地长大，心里比吃了蜜还甜。愿你永远开心快乐，奶奶爱你！
+                    </p>
+                    <div class="mt-4 flex justify-end">
+                        <span class="text-accent text-xl">
+                            <i class="fa fa-gift"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- 祝福4 -->
+                <div class="wish-card bg-light rounded-xl p-6 shadow-lg" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                            爷爷
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold text-lg">爷爷</h3>
+                            <p class="text-sm text-gray-500">2026年7月15日</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        小宝贝，爷爷的心头肉！三岁生日快乐！希望你像小树苗一样茁壮成长，
+                        将来成为一个有用的人。爷爷会一直陪着你，看着你长大成人！
+                    </p>
+                    <div class="mt-4 flex justify-end">
+                        <span class="text-primary text-xl">
+                            <i class="fa fa-tree"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- 祝福5 -->
+                <div class="wish-card bg-light rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white font-bold">
+                            姑姑
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold text-lg">姑姑</h3>
+                            <p class="text-sm text-gray-500">2026年7月15日</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        亲爱的小宝贝，三岁生日快乐！姑姑最喜欢看你活泼可爱的样子，
+                        听你奶声奶气地说话。愿你永远保持这份纯真和快乐，健康成长！姑姑爱你！
+                    </p>
+                    <div class="mt-4 flex justify-end">
+                        <span class="text-secondary text-xl">
+                            <i class="fa fa-smile-o"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- 添加祝福卡片 -->
+                <div id="add-wish-card" class="bg-light bg-opacity-50 rounded-xl p-6 shadow-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-primary text-3xl mb-4">
+                        <i class="fa fa-plus"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-700 mb-2">添加祝福</h3>
+                    <p class="text-sm text-gray-500 text-center">
+                        点击这里，为小宝贝送上你的生日祝福
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 添加祝福模态框 -->
+            <div id="add-wish-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+                <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-primary">添加生日祝福</h3>
+                        <button id="close-wish-modal" class="text-gray-500 hover:text-gray-700">
+                            <i class="fa fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <form id="wish-form">
+                        <div class="mb-4">
+                            <label for="wish-name" class="block text-gray-700 font-bold mb-2">您的称呼</label>
+                            <input type="text" id="wish-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="请输入您的称呼" required="">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="wish-content" class="block text-gray-700 font-bold mb-2">祝福内容</label>
+                            <textarea id="wish-content" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="请输入您的祝福..." required=""></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2">选择图标</label>
+                            <div class="flex gap-4">
+                                <label class="flex flex-col items-center cursor-pointer">
+                                    <input type="radio" name="wish-icon" value="heart" class="sr-only" checked="">
+                                    <span class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary text-xl hover:bg-opacity-20 transition-colors">
+                                        <i class="fa fa-heart"></i>
+                                    </span>
+                                </label>
+                                <label class="flex flex-col items-center cursor-pointer">
+                                    <input type="radio" name="wish-icon" value="star" class="sr-only">
+                                    <span class="w-10 h-10 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center text-secondary text-xl hover:bg-opacity-20 transition-colors">
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </label>
+                                <label class="flex flex-col items-center cursor-pointer">
+                                    <input type="radio" name="wish-icon" value="gift" class="sr-only">
+                                    <span class="w-10 h-10 rounded-full bg-accent bg-opacity-10 flex items-center justify-center text-accent text-xl hover:bg-opacity-20 transition-colors">
+                                        <i class="fa fa-gift"></i>
+                                    </span>
+                                </label>
+                                <label class="flex flex-col items-center cursor-pointer">
+                                    <input type="radio" name="wish-icon" value="smile-o" class="sr-only">
+                                    <span class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary text-xl hover:bg-opacity-20 transition-colors">
+                                        <i class="fa fa-smile-o"></i>
+                                    </span>
+                                </label>
+                                <label class="flex flex-col items-center cursor-pointer">
+                                    <input type="radio" name="wish-icon" value="tree" class="sr-only">
+                                    <span class="w-10 h-10 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center text-secondary text-xl hover:bg-opacity-20 transition-colors">
+                                        <i class="fa fa-tree"></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full btn-primary">
+                            <i class="fa fa-paper-plane mr-2"></i> 发送祝福
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 互动故事书部分 -->
+    <section id="storybook" class="section-padding bg-light relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-primary mb-4">互动故事书</h2>
+                <p class="text-xl text-gray-600">一起回顾宝贝的成长故事</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden" data-aos="fade-up">
+                <!-- 故事书封面 -->
+                <div id="storybook-cover" class="relative h-[500px] flex flex-col items-center justify-center bg-gradient-to-b from-primary to-secondary p-8">
+                    <div class="absolute top-4 right-4 text-white text-xl">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    
+                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/ca5863e3e46b42e8aad940b78513cd61~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544249&amp;x-signature=jx1f8d2zVQjhq2aIW8UlROYej4M%3D" alt="故事书封面" class="w-48 h-48 object-contain mb-8 animate-float">
+                    
+                    <h3 class="text-4xl font-bold text-white mb-4 text-shadow-lg">小宝贝的成长故事</h3>
+                    <p class="text-xl text-white mb-8 text-center text-shadow">
+                        从出生到三岁的奇妙旅程
+                    </p>
+                    
+                    <button id="start-story" class="bg-white text-primary px-8 py-3 rounded-full font-bold shadow-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105">
+                        开始阅读 <i class="fa fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                
+                <!-- 故事书内页 -->
+                <div id="storybook-pages" class="hidden">
+                    <!-- 故事书导航 -->
+                    <div class="flex justify-between items-center p-4 bg-gray-100">
+                        <button id="prev-page" class="text-gray-700 hover:text-primary">
+                            <i class="fa fa-arrow-left text-xl"></i>
+                        </button>
+                        <div class="text-gray-700 font-bold">
+                            <span id="current-page">1</span> / <span id="total-pages">5</span>
+                        </div>
+                        <button id="next-page" class="text-gray-700 hover:text-primary">
+                            <i class="fa fa-arrow-right text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- 故事内容区域 -->
+                    <div class="relative h-[500px]">
+                        <!-- 第1页：出生 -->
+                        <div class="storybook-page active" data-page="1">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center p-8 bg-primary bg-opacity-10">
+                                <div class="w-40 h-40 rounded-full bg-white flex items-center justify-center mb-8 shadow-lg">
+                                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/b36f36df70374fbeb2450cdd9373d6f1~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544257&amp;x-signature=SwG9mmmkYitoCNSdgUB0pbuHapE%3D" alt="出生" class="w-32 h-32 object-contain">
+                                </div>
+                                <h3 class="text-3xl font-bold text-primary mb-4">出生的那一刻</h3>
+                                <p class="text-lg text-gray-700 text-center max-w-2xl">
+                                    2023年7月15日，一个可爱的小宝贝来到了这个世界。
+                                    你的第一声啼哭，让爸爸妈妈的心中充满了幸福和感动。
+                                    欢迎你，我们亲爱的宝贝！
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 第2页：婴儿时期 -->
+                        <div class="storybook-page" data-page="2">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center p-8 bg-secondary bg-opacity-10">
+                                <div class="w-40 h-40 rounded-full bg-white flex items-center justify-center mb-8 shadow-lg">
+                                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/81d503dbb2f54401aef15fa5cdbbeb7c~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544250&amp;x-signature=G0tOgZupxSKL90k35qdun%2FSW4ck%3D" alt="婴儿时期" class="w-32 h-32 object-contain">
+                                </div>
+                                <h3 class="text-3xl font-bold text-secondary mb-4">婴儿时期</h3>
+                                <p class="text-lg text-gray-700 text-center max-w-2xl">
+                                    小小的你一天天长大，学会了抬头、翻身、独坐。
+                                    你的第一次微笑，第一次发出"妈妈"、"爸爸"的声音，
+                                    都让我们欣喜若狂。每一天，都有新的惊喜！
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 第3页：学走路 -->
+                        <div class="storybook-page" data-page="3">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center p-8 bg-accent bg-opacity-10">
+                                <div class="w-40 h-40 rounded-full bg-white flex items-center justify-center mb-8 shadow-lg">
+                                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/b36f36df70374fbeb2450cdd9373d6f1~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544257&amp;x-signature=SwG9mmmkYitoCNSdgUB0pbuHapE%3D" alt="学走路" class="w-32 h-32 object-contain">
+                                </div>
+                                <h3 class="text-3xl font-bold text-accent mb-4">学走路</h3>
+                                <p class="text-lg text-gray-700 text-center max-w-2xl">
+                                    1岁左右，你开始尝试站立和行走。
+                                    虽然摇摇晃晃，经常摔倒，但你从不害怕，勇敢地爬起来继续尝试。
+                                    终于有一天，你迈出了人生的第一步！我们为你感到骄傲！
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 第4页：幼儿时期 -->
+                        <div class="storybook-page" data-page="4">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center p-8 bg-primary bg-opacity-10">
+                                <div class="w-40 h-40 rounded-full bg-white flex items-center justify-center mb-8 shadow-lg">
+                                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/d753c29309f545049134536fed90c7e2~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544250&amp;x-signature=HZcU9WU%2B4nNjE6OIB0LjUwLLxVw%3D" alt="幼儿时期" class="w-32 h-32 object-contain">
+                                </div>
+                                <h3 class="text-3xl font-bold text-primary mb-4">幼儿时期</h3>
+                                <p class="text-lg text-gray-700 text-center max-w-2xl">
+                                    2岁的你，活泼好动，好奇心强，喜欢探索周围的世界。
+                                    你学会了说很多话，能够表达自己的想法和感受。
+                                    你喜欢唱歌、跳舞、画画，每一天都充满了活力和欢乐！
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 第5页：3岁生日 -->
+                        <div class="storybook-page" data-page="5">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center p-8 bg-secondary bg-opacity-10">
+                                <div class="w-40 h-40 rounded-full bg-white flex items-center justify-center mb-8 shadow-lg">
+                                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/bcdd6cd6d8dc4655b40fad5c3b597b44~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544250&amp;x-signature=PZHcaMxsuvUzzTiAFy6WRaUY36s%3D" alt="3岁生日" class="w-32 h-32 object-contain">
+                                </div>
+                                <h3 class="text-3xl font-bold text-secondary mb-4">3岁生日</h3>
+                                <p class="text-lg text-gray-700 text-center max-w-2xl">
+                                    今天，我们的小宝贝三岁了！你已经是个小大人了，
+                                    有自己的想法和喜好，会表达自己的情感。
+                                    感谢你带给我们无尽的欢乐和爱。
+                                    愿你的未来充满无限可能！
+                                    生日快乐，我们永远爱你！
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 故事书控制 -->
+                    <div class="flex justify-center p-4 bg-gray-100">
+                        <button id="close-storybook" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-bold hover:bg-gray-300 transition-colors">
+                            <i class="fa fa-times mr-2"></i> 关闭故事书
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚部分 -->
+    <footer class="bg-primary bg-opacity-10 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center items-center mb-6">
+                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/bcdd6cd6d8dc4655b40fad5c3b597b44~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544250&amp;x-signature=PZHcaMxsuvUzzTiAFy6WRaUY36s%3D" alt="Logo" class="w-12 h-12 rounded-full mr-3">
+                <h3 class="text-2xl font-bold text-primary">小宝贝3岁生日纪念</h3>
+            </div>
+            
+            <p class="text-gray-600 mb-6">
+                用爱记录成长，用心珍藏回忆
+            </p>
+            
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="text-primary hover:text-secondary transition-colors text-2xl">
+                    <i class="fa fa-camera"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-secondary transition-colors text-2xl">
+                    <i class="fa fa-heart"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-secondary transition-colors text-2xl">
+                    <i class="fa fa-gift"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-secondary transition-colors text-2xl">
+                    <i class="fa fa-star"></i>
+                </a>
+            </div>
+            
+            <p class="text-gray-500 text-sm">
+                © 2026 小宝贝生日纪念网站 | 用爱创造美好回忆
+            </p>
+        </div>
+    </footer>
+    
+    <!-- 音乐播放器 -->
+    <div class="music-player">
+        <div class="music-toggle" id="music-toggle">
+            <i class="fa fa-music text-white"></i>
+        </div>
+        <div class="music-info hidden md:block">
+            <p class="text-sm font-bold text-gray-700">生日快乐歌</p>
+            <div class="music-progress">
+                <div class="music-progress-bar" id="music-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 礼物盒惊喜 -->
+    <div class="fixed bottom-4 left-4 z-40">
+        <div class="gift-box w-16 h-16 bg-primary rounded-lg shadow-lg cursor-pointer" id="gift-box">
+            <div class="gift-lid"></div>
+            <div class="gift-ribbon"></div>
+            <div class="gift-body w-full h-full bg-primary rounded-lg flex items-center justify-center text-white">
+                <i class="fa fa-gift text-2xl"></i>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 礼物盒惊喜模态框 -->
+    <div id="gift-modal" class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 text-center">
+            <div class="mb-8">
+                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/bcdd6cd6d8dc4655b40fad5c3b597b44~tplv-a9rns2rl98-image.image?rcl=20260109175033A7B9FF2F72FAF8E8CAB0&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1770544250&amp;x-signature=PZHcaMxsuvUzzTiAFy6WRaUY36s%3D" alt="生日礼物" class="w-32 h-32 object-contain mx-auto animate-float">
+            </div>
+            
+            <h3 class="text-2xl font-bold text-primary mb-4">生日快乐！</h3>
+            <p class="text-gray-700 mb-6">
+                这是给小宝贝的特别惊喜！愿这份礼物带来更多的欢乐和幸福！
+            </p>
+            
+            <button id="close-gift" class="bg-primary text-white px-6 py-3 rounded-full font-bold hover:bg-opacity-90 transition-all">
+                <i class="fa fa-heart mr-2"></i> 谢谢礼物！
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // 初始化AOS动画库
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // 创建星星背景
+            createStars();
+            
+            // 初始化音乐播放器
+            initMusicPlayer();
+            
+            // 初始化导航菜单
+            initNavigation();
+            
+            // 初始化照片画廊
+            initGallery();
+            
+            // 初始化祝福墙
+            initWishes();
+            
+            // 初始化故事书
+            initStorybook();
+            
+            // 初始化礼物盒
+            initGiftBox();
+            
+            // 初始化时间轴动画
+            initTimelineAnimation();
+        });
+        
+        // 创建星星背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // 随机大小
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // 随机位置
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // 初始化音乐播放器
+        function initMusicPlayer() {
+            const musicToggle = document.getElementById('music-toggle');
+            const musicProgressBar = document.getElementById('music-progress-bar');
+            let isPlaying = false;
+            let progress = 0;
+            let progressInterval;
+            
+            musicToggle.addEventListener('click', function() {
+                isPlaying = !isPlaying;
+                
+                if (isPlaying) {
+                    musicToggle.innerHTML = '<i class="fa fa-pause text-white"></i>';
+                    
+                    // 模拟音乐进度
+                    progressInterval = setInterval(function() {
+                        progress += 0.5;
+                        if (progress > 100) {
+                            progress = 0;
+                        }
+                        musicProgressBar.style.width = `${progress}%`;
+                    }, 100);
+                } else {
+                    musicToggle.innerHTML = '<i class="fa fa-music text-white"></i>';
+                    clearInterval(progressInterval);
+                }
+            });
+        }
+        
+        // 初始化导航菜单
+        function initNavigation() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // 关闭移动端菜单
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        }
+        
+        // 初始化照片画廊
+        function initGallery() {
+            const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const imageViewer = document.getElementById('image-viewer');
+            const viewerImage = document.getElementById('viewer-image');
+            const closeViewer = document.getElementById('close-viewer');
+            
+            // 筛选功能
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // 添加当前按钮的active类
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // 筛选图片
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.classList.contains(filter)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // 图片查看器
+            galleryItems.forEach(item => {
+                const image = item.querySelector('img');
+                
+                image.addEventListener('click', function() {
+                    viewerImage.src = this.src;
+                    imageViewer.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // 关闭查看器
+            closeViewer.addEventListener('click', function() {
+                imageViewer.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // 点击背景关闭
+            imageViewer.addEventListener('click', function(e) {
+                if (e.target === imageViewer) {
+                    imageViewer.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+        
+        // 初始化祝福墙
+        function initWishes() {
+            const addWishCard = document.getElementById('add-wish-card');
+            const addWishModal = document.getElementById('add-wish-modal');
+            const closeWishModal = document.getElementById('close-wish-modal');
+            const wishForm = document.getElementById('wish-form');
+            const wishesContainer = document.querySelector('#wishes .grid');
+            
+            // 打开添加祝福模态框
+            addWishCard.addEventListener('click', function() {
+                addWishModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // 关闭模态框
+            closeWishModal.addEventListener('click', function() {
+                addWishModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // 点击背景关闭
+            addWishModal.addEventListener('click', function(e) {
+                if (e.target === addWishModal) {
+                    addWishModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // 提交祝福
+            wishForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('wish-name').value;
+                const content = document.getElementById('wish-content').value;
+                const icon = document.querySelector('input[name="wish-icon"]:checked').value;
+                
+                // 创建新的祝福卡片
+                const newWishCard = document.createElement('div');
+                newWishCard.classList.add('wish-card', 'bg-light', 'rounded-xl', 'p-6', 'shadow-lg');
+                newWishCard.setAttribute('data-aos', 'fade-up');
+                
+                // 设置卡片内容
+                newWishCard.innerHTML = `
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                            ${name.charAt(0)}
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold text-lg">${name}</h3>
+                            <p class="text-sm text-gray-500">${new Date().toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        ${content}
+                    </p>
+                    <div class="mt-4 flex justify-end">
+                        <span class="text-primary text-xl">
+                            <i class="fa fa-${icon}"></i>
+                        </span>
+                    </div>
+                `;
+                
+                // 插入到添加祝福卡片之前
+                wishesContainer.insertBefore(newWishCard, addWishCard);
+                
+                // 重置表单
+                wishForm.reset();
+                
+                // 关闭模态框
+                addWishModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                
+                // 重新初始化AOS
+                AOS.refresh();
+            });
+        }
+        
+        // 初始化故事书
+        function initStorybook() {
+            const startStory = document.getElementById('start-story');
+            const storybookCover = document.getElementById('storybook-cover');
+            const storybookPages = document.getElementById('storybook-pages');
+            const closeStorybook = document.getElementById('close-storybook');
+            const prevPage = document.getElementById('prev-page');
+            const nextPage = document.getElementById('next-page');
+            const currentPageSpan = document.getElementById('current-page');
+            const totalPagesSpan = document.getElementById('total-pages');
+            const storybookPagesElements = document.querySelectorAll('.storybook-page');
+            
+            let currentPage = 1;
+            const totalPages = storybookPagesElements.length;
+            
+            // 设置总页数
+            totalPagesSpan.textContent = totalPages;
+            
+            // 开始阅读
+            startStory.addEventListener('click', function() {
+                storybookCover.classList.add('hidden');
+                storybookPages.classList.remove('hidden');
+                showPage(1);
+            });
+            
+            // 关闭故事书
+            closeStorybook.addEventListener('click', function() {
+                storybookPages.classList.add('hidden');
+                storybookCover.classList.remove('hidden');
+                currentPage = 1;
+                showPage(currentPage);
+            });
+            
+            // 上一页
+            prevPage.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            });
+            
+            // 下一页
+            nextPage.addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            });
+            
+            // 显示指定页
+            function showPage(pageNum) {
+                storybookPagesElements.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                const targetPage = document.querySelector(`.storybook-page[data-page="${pageNum}"]`);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    currentPageSpan.textContent = pageNum;
+                }
+            }
+        }
+        
+        // 初始化礼物盒
+        function initGiftBox() {
+            const giftBox = document.getElementById('gift-box');
+            const giftModal = document.getElementById('gift-modal');
+            const closeGift = document.getElementById('close-gift');
+            
+            // 点击礼物盒
+            giftBox.addEventListener('click', function() {
+                giftModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                
+                // 播放动画
+                animateGift();
+            });
+            
+            // 关闭礼物模态框
+            closeGift.addEventListener('click', function() {
+                giftModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // 点击背景关闭
+            giftModal.addEventListener('click', function(e) {
+                if (e.target === giftModal) {
+                    giftModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // 礼物动画
+            function animateGift() {
+                // 创建五彩纸屑
+                const confettiContainer = document.createElement('div');
+                confettiContainer.style.position = 'absolute';
+                confettiContainer.style.top = '0';
+                confettiContainer.style.left = '0';
+                confettiContainer.style.width = '100%';
+                confettiContainer.style.height = '100%';
+                confettiContainer.style.pointerEvents = 'none';
+                confettiContainer.style.zIndex = '10';
+                
+                giftModal.querySelector('.bg-white').appendChild(confettiContainer);
+                
+                // 创建五彩纸屑
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'absolute';
+                    confetti.style.width = `${Math.random() * 10 + 5}px`;
+                    confetti.style.height = `${Math.random() * 10 + 5}px`;
+                    confetti.style.backgroundColor = getRandomColor();
+                    confetti.style.left = `${Math.random() * 100}%`;
+                    confetti.style.top = `${Math.random() * 100}%`;
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.opacity = '0';
+                    confetti.style.transform = 'translateY(-20px)';
+                    confetti.style.transition = `all ${Math.random() * 3 + 2}s ease-in-out`;
+                    
+                    confettiContainer.appendChild(confetti);
+                    
+                    // 延迟显示
+                    setTimeout(() => {
+                        confetti.style.opacity = '1';
+                        confetti.style.transform = `translateY(${Math.random() * 300 + 200}px) rotate(${Math.random() * 360}deg)`;
+                    }, Math.random() * 500);
+                }
+                
+                // 移除五彩纸屑
+                setTimeout(() => {
+                    confettiContainer.remove();
+                }, 5000);
+            }
+            
+            // 获取随机颜色
+            function getRandomColor() {
+                const colors = ['#FF9EAA', '#9ED5FF', '#FFDE7D', '#5D5FEF', '#FF7D91'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+        }
+        
+        // 初始化时间轴动画
+        function initTimelineAnimation() {
+            // 使用GSAP为时间轴添加动画
+            gsap.registerPlugin(ScrollTrigger);
+            
+            gsap.utils.toArray('.timeline-item').forEach(item => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+            });
+        }
+    </script>
+
+</body></html>
